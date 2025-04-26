@@ -1,50 +1,87 @@
-# N11 Arama Modülü Yük Testi
+<p align="center">
+  <img src="https://locust.io/static/img/logo.png" alt="Locust Logo" width="200"/>
+</p>
 
-Bu proje, Locust kullanarak N11’in arama modülünün yük altındaki davranışını test etmeyi amaçlamaktadır. Bu doküman, testlerin kurulumunu ve çalıştırılmasını açıklamaktadır.
+# 📈 N11 Arama Modülü Yük Testi
 
-## Gereksinimler
+![Locust](https://img.shields.io/badge/Locust-Performance%20Testing-brightgreen)  
+![Python](https://img.shields.io/badge/Python-3.6+-blue)
+
+> **Locust** ile N11 Arama Modülü üzerinde yük testi gerçekleştiriyoruz.  
+> Sanal kullanıcılar ile performans ölçümü ve hata takibi yaparak, sistemin dayanıklılığını analiz ediyoruz.
+
+---
+
+## 🚀 Kurulum
+
+1. **Projeyi klonlayın:**
+
+   ```bash
+   git clone https://github.com/selimerdinc/selim-erdinc-load-test.git
+   cd selim-erdinc-load-test
+   ```
+
+2. **Bağımlılıkları yükleyin:**
+
+   ```bash
+   pip install locust
+   ```
+
+3. **Locust ile testi başlatın:**
+
+   ```bash
+   locust -f main.py --users 100 --spawn-rate 10 --host https://www.n11.com
+   ```
+
+4. **Web arayüzünü kullanın:**
+
+   - Tarayıcıdan `http://localhost:8089` adresine erişin.
+   - Kullanıcı sayısını ve oluşturulma hızını ayarlayarak testi başlatın.
+
+---
+
+## 📋 Test Senaryosu
+
+🔎 **Arama Çubuğu Testi**
+
+- `/arama?q=bilgisayar` endpoint'ine istek gönderilir.
+- Dönen yanıtta:
+  - **HTTP 200** durumu alınır.
+  - Sayfa içeriğinde "**bilgisayar**" kelimesi aranır.
+
+⚙️ **Yük Altında Davranış Testi**
+
+- Farklı sanal kullanıcı sayılarıyla test yapılır.
+- Yanıt süreleri ve hata oranları gözlemlenir.
+
+---
+
+## 📈 Sonuçların İncelenmesi
+
+- Locust'un **web arayüzü** üzerinden:
+  - Yanıt sürelerini
+  - Başarı oranlarını
+  - Hata yüzdelerini
+  detaylıca görebilirsiniz.
+
+- JSON raporları ile **dışa aktarım** yapabilirsiniz.
+
+---
+
+## 🛠 Kullanılan Teknolojiler
+
+- [Locust](https://locust.io/) — Yük Testi Aracı
 - Python 3.6+
-- pip (Python paket yöneticisi)
 
-## Proje Kurulumu
+---
 
-1. **Proje dizininizi oluşturun ve içine geçiş yapın:**
-    ```bash
-    mkdir n11-search-load-test
-    cd n11-search-load-test
-    ```
+## 📌 Proje Yapısı
 
-2. **Locust dosyasını oluşturun:**
-    `main.py` adında bir dosya oluşturun ve aşağıdaki kodu yapıştırın:
-
-3. **Bağımlılıkları yükleyin:**
-    ```bash
-    pip install locust
-    ```
-
-4. **Testi başlatın:**
-    ```bash
-    locust -f main.py --users 100 --spawn-rate 10 --host https://www.n11.com 
-    ```
-
-5. **Web arayüzünü kullanarak testi yapılandırın:**
-    - Tarayıcınızda `http://localhost:8089` adresini açın.
-    - Kullanıcı sayısı (Number of users) ve bağlanma hızını (Spawn rate) belirleyerek testi başlatın.
-
-## Test Senaryosu
-
-1. **Arama Çubuğu Testi:**
-    - `/arama?q=bilgisayar` endpoint’i kullanılarak, "bilgisayar" kelimesi için arama yapılır.
-    - Gelen yanıtta "bilgisayar" kelimesinin varlığı ve HTTP durum kodunun 200 olduğu kontrol edilir.
-
-2. **Yük Altında Davranış Testi:**
-    - Farklı sayılarda sanal kullanıcılarla arama modülü test edilir.
-    - Yanıt süreleri ve hata oranları izlenir.
-
-## Sonuçları Analiz Etme
-- Test sonucunda, yanıt süreleri ve hata durumları hakkında bilgi sahibi olunabilir.
-- Test sonuçlarını web arayüzünde veya Locust’un sunduğu JSON raporları aracılığıyla inceleyebilirsiniz.
-
-
-Bu proje, N11’in arama modülü üzerinde daha iyi bir performans analizi yapmaya yönelik bir yaklaşım sunmaktadır.
+```bash
+selim-erdinc-load-test/
+│
+├── main.py         # Test senaryoları
+├── README.md       # Proje dökümantasyonu
+└── requirements.txt (isteğe bağlı)
+```
 
